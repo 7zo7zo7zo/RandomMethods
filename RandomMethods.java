@@ -22,6 +22,24 @@ public class RandomMethods {
         }
         return newArray;
     }
+    
+    public BufferedImage getMinimap(int[][] map) {
+        BufferedImage image = new BufferedImage(map[0].length, map.length, BufferedImage.TYPE_INT_RGB);
+        int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
+        int count = 0;
+        for (int i = 0; i < map.length; i++) {
+            for (int j = 0; j < map[0].length; j++) {
+                if (map[i][j] != 0) {
+                    pixels[count] = Color.RED.getRGB();
+                } else {
+                    pixels[count] = Color.WHITE.getRGB();
+                }
+                count++;
+            }
+        }
+        return image;
+    }
+    
     public int darken(int value, int amount) {
         int red = (value >> 16) & 0xFF;
         int green = (value >> 8) & 0xFF;
@@ -183,24 +201,5 @@ public class RandomMethods {
                 (x2 >= y1 && x2 <= y2) ||
                 (y1 >= x1 && y1 <= x2) ||
                 (y2 >= x1 && y2 <= x2);
-    }
-    
-    int[][] map;
-    
-    public BufferedImage getMinimap(int[][] map) {
-        BufferedImage image = new BufferedImage(map[0].length, map.length, BufferedImage.TYPE_INT_RGB);
-        int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
-        int count = 0;
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map[0].length; j++) {
-                if (map[i][j] != 0) {
-                    pixels[count] = Color.RED.getRGB();
-                } else {
-                    pixels[count] = Color.WHITE.getRGB();
-                }
-                count++;
-            }
-        }
-        return image;
     }
 }
