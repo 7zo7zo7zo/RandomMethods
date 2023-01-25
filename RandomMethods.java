@@ -86,7 +86,7 @@ public class RandomMethods {
         for(int i = 0; i < xValues.length; i++) {
             double xDist = xValues[i] - centroidX;
             double yDist = yValues[i] - centroidY;
-            double angle = Math.atan(yDist/xDist);
+            double angle = Math.atan2(yDist, xDist);
             if(xDist < 0 && yDist >= 0) angle += Math.PI;
             if(xDist < 0 && yDist < 0) angle -= Math.PI;
             double hypot = Math.sqrt(Math.pow(yDist, 2) + Math.pow(xDist, 2));
@@ -118,7 +118,7 @@ public class RandomMethods {
         for(int i = 1; i < length; i++) {
             xDist = xValues[i] - xValues[i - 1];
             yDist = yValues[i] - yValues[i - 1];
-            a = Math.atan(yDist / xDist);
+            a = Math.atan2(yDist, xDist);
             if (xDist < 0 && yDist >= 0) a += Math.PI;
             if (xDist < 0 && yDist < 0) a -= Math.PI;
 
@@ -156,7 +156,7 @@ public class RandomMethods {
         }
         xDist = xValues[0] - xValues[length - 1];
         yDist = yValues[0] - yValues[length - 1];
-        a = Math.atan(yDist / xDist);
+        a = Math.atan2(yDist, xDist);
         if (xDist < 0 && yDist >= 0) a += Math.PI;
         if (xDist < 0 && yDist < 0) a -= Math.PI;
         n = a + Math.PI / 2;
